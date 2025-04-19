@@ -125,7 +125,7 @@ const HomePage: React.FC = () => {
             className="rounded-full border-4 border-white shadow-lg mb-6 transition-transform duration-300 hover:scale-110"
           />
           <h2 className="text-5xl font-bold mb-4">
-            Hi, I'm Panji Arif Maulana
+            Hi, Im Panji Arif Maulana
           </h2>
           <p className="text-xl mb-6">
             A passionate Mobile Developer | Open to Work
