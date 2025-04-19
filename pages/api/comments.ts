@@ -8,6 +8,7 @@ interface Comment extends WithId<Document> {
   message: string;
   rating: number;
   createdAt: Date;
+  _id: string; // Tambahkan _id di sini agar sesuai dengan WithId
 }
 
 interface ErrorResponse {
@@ -54,14 +55,14 @@ export default async function handler(
         return res.status(400).json({ error: "Rating tidak valid" });
       }
 
-      const newComment = {
+      const newComment: Omit<Comment, '_id'> = {
         name,
         message,
         rating,
         createdAt: new Date(),
       };
 
-      await collection.insertOne(newComment);
+      await collection.insertOne(newComment as Omit<Comment, '_id'>);
       return res.status(201).json({ message: "Komentar berhasil disimpan" });
     }
 
