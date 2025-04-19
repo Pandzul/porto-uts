@@ -12,7 +12,7 @@ import { technologies } from "./technologies";
 
 const LandingPageTemplate = () => {
   const onConfettiLoad = () => {
-    const key = "create-next-stack-hasShownConfetti-project-uts";
+    const key = "create-next-stack-hasShownConfetti-framermotion";
     const hasShownConfetti = localStorage.getItem(key);
     if (hasShownConfetti != null) return;
 

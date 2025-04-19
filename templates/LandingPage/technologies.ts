@@ -157,21 +157,6 @@ export const technologies: Technology[] = [
     ],
   },
   {
-    name: "React Icons",
-    description:
-      "React Icons is SVG icon library. It comprises icons from over 25 of the most popular icon libraries including Ant Design Icons, Bootstrap Icons, Feather, Font Awesome, and Material Design icons. It uses React component syntax, and utilizes ES6 imports to only bundle the icons your app is using.",
-    links: [
-      {
-        title: "Website",
-        url: "https://react-icons.github.io/react-icons/",
-      },
-      {
-        title: "GitHub",
-        url: "https://github.com/react-icons/react-icons",
-      },
-    ],
-  },
-  {
     name: "ESLint",
     description:
       "ESLint is a tool for linting JavaScript and TypeScript code. It is used to check for errors in code and to enforce coding conventions. It can be configured to use custom rule sets and is often run both by code editors during development as well as in CI/CD.",
@@ -286,6 +271,40 @@ export const technologies: Technology[] = [
       {
         title: "Workflow syntax",
         url: "https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions",
+      },
+    ],
+  },
+  {
+    name: "Plausible Analytics",
+    description:
+      "Plausible Analytics is an easy to use and privacy-friendly alternative to Google Analytics. It is intuitive, lightweight and open source. It also uses no cookies and is fully compliant with GDPR, CCPA and PECR. It is available both self-hosted and fully managed.",
+    links: [
+      {
+        title: "Website",
+        url: "https://plausible.io/",
+      },
+      {
+        title: "Docs",
+        url: "https://plausible.io/docs",
+      },
+      {
+        title: "GitHub",
+        url: "https://github.com/plausible/analytics",
+      },
+    ],
+  },
+  {
+    name: "next-plausible",
+    description:
+      "next-plausible is a simple Next.js integration of Plausible Analytics. It will add the Plausible script for you, add a proxy to avoid ad-blockers, and let you send custom events.",
+    links: [
+      {
+        title: "Website",
+        url: "https://next-plausible.vercel.app/",
+      },
+      {
+        title: "GitHub",
+        url: "https://github.com/4lejandrito/next-plausible",
       },
     ],
   },

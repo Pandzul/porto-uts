@@ -1,19 +1,12 @@
-import { AppProps } from "next/app";
-import "../styles/globals.css";
-import React from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import "@/styles/globals.css";
 
-const App = ({ Component, pageProps }: AppProps) => {
-  const [queryClient] = React.useState(() => new QueryClient());
+function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <Component {...pageProps} />
-      </QueryClientProvider>
-    </>
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
   );
-};
+}
 
-export default App;
+export default MyApp;
