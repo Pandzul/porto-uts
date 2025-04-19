@@ -1,6 +1,19 @@
 // pages/api/chat.ts
-export default async function handler(req, res) {
-  const { message } = req.body;
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+interface ChatRequest {
+  message: string
+}
+
+interface ChatResponse {
+  reply: string
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ChatResponse>
+) {
+  const { message } = req.body as ChatRequest
 
   try {
     const response = await fetch(
@@ -12,18 +25,18 @@ export default async function handler(req, res) {
           contents: [{ parts: [{ text: message }] }],
         }),
       }
-    );
+    )
 
-    const data = await response.json();
-    const botMessage = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    const data = await response.json()
+    const botMessage = data?.candidates?.[0]?.content?.parts?.[0]?.text
 
     if (botMessage) {
-      res.status(200).json({ reply: botMessage });
+      res.status(200).json({ reply: botMessage })
     } else {
-      res.status(200).json({ reply: "Maaf, saya tidak bisa membalas." });
+      res.status(200).json({ reply: "Maaf, saya tidak bisa membalas." })
     }
   } catch (error) {
-    console.error("Chat error:", error);
-    res.status(500).json({ reply: "Maaf, terjadi kesalahan pada server." });
+    console.error("Chat error:", error)
+    res.status(500).json({ reply: "Maaf, terjadi kesalahan pada server." })
   }
 }
