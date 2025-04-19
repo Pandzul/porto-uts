@@ -96,7 +96,7 @@ export default function About() {
           <h2 className="text-2xl font-semibold mb-4">Panji Arif Maulana</h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
             Saya <strong>Panji Arif Maulana</strong>, seorang mahasiswa di{" "}
-            <strong>Ma'soem University</strong>
+            <strong>Masoem University</strong>
             dengan program studi <strong>Sistem Informasi</strong>. Saat ini
             saya berada di <strong>semester 4</strong>
             dan sedang mendalami <strong>pemrograman mobile</strong> dalam mata
@@ -105,7 +105,7 @@ export default function About() {
 
           <h3 className="text-xl font-semibold mt-6 mb-2">Pendidikan</h3>
           <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-            <li>Ma'soem University - Sistem Informasi (Semester 4)</li>
+            <li>Masoem University - Sistem Informasi (Semester 4)</li>
           </ul>
 
           <h3 className="text-xl font-semibold mt-6 mb-2">Keterampilan</h3>
