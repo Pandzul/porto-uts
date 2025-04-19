@@ -29,7 +29,6 @@ export default async function handler(
   res: NextApiResponse<SuccessResponse | ErrorResponse | GetResponse>
 ) {
   try {
-    // Pastikan clientPromise sudah resolve dan tidak undefined
     const client = await clientPromise;
     if (!client) {
       return res.status(500).json({ error: "Gagal terhubung ke database" });
@@ -39,7 +38,7 @@ export default async function handler(
     const collection = db.collection<Comment>("comments");
 
     if (req.method === "POST") {
-      const { name, message, rating }: Partial<Comment> = req.body;
+      const { name, message, rating }: Partial<Omit<Comment, '_id' | 'createdAt'>> = req.body;
 
       if (!name || !message || !rating) {
         return res.status(400).json({ error: "Semua field harus diisi" });
@@ -49,14 +48,14 @@ export default async function handler(
         return res.status(400).json({ error: "Rating tidak valid" });
       }
 
-      const newComment: Comment = {
+      const newComment = {
         name,
         message,
         rating,
         createdAt: new Date(),
       };
 
-      await collection.insertOne(newComment);
+      await collection.insertOne(newComment as Omit<Comment, '_id'>);
       return res.status(201).json({ message: "Komentar berhasil disimpan" });
     }
 
