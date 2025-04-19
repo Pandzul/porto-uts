@@ -28,17 +28,19 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SuccessResponse | ErrorResponse | GetResponse>
 ) {
-  // Type annotation untuk MongoDB client
-  const client: MongoClient = await clientPromise;
-  
   try {
+    // Pastikan clientPromise sudah resolve dan tidak undefined
+    const client = await clientPromise;
+    if (!client) {
+      return res.status(500).json({ error: "Gagal terhubung ke database" });
+    }
+
     const db = client.db("Dzull");
     const collection = db.collection<Comment>("comments");
 
     if (req.method === "POST") {
-      // Type assertion untuk request body
       const { name, message, rating }: Partial<Comment> = req.body;
-      
+
       if (!name || !message || !rating) {
         return res.status(400).json({ error: "Semua field harus diisi" });
       }
@@ -68,8 +70,8 @@ export default async function handler(
         (sum: number, comment) => sum + comment.rating,
         0
       );
-      const averageRating = totalVoters > 0 
-        ? Number((totalRating / totalVoters).toFixed(1)) 
+      const averageRating = totalVoters > 0
+        ? Number((totalRating / totalVoters).toFixed(1))
         : 0;
 
       return res.status(200).json({
