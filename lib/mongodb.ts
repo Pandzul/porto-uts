@@ -1,6 +1,10 @@
 // lib/db.ts
 import { MongoClient, MongoClientOptions } from "mongodb";
 
+declare global {
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+}
+
 const uri = process.env.MONGODB_URI;
 const options: MongoClientOptions = {};
 
@@ -12,9 +16,9 @@ if (!process.env.MONGODB_URI) {
 }
 
 if (!global._mongoClientPromise) {
-  client = new MongoClient(uri!, options); // menggunakan non-null assertion karena sudah dicek di atas
+  client = new MongoClient(uri!, options);
   global._mongoClientPromise = client.connect();
 }
-clientPromise = global._mongoClientPromise as Promise<MongoClient>; // Type assertion agar TypeScript tahu tipenya
+clientPromise = global._mongoClientPromise as Promise<MongoClient>;
 
 export default clientPromise;
