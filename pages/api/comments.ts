@@ -24,6 +24,12 @@ interface GetResponse {
   totalVoters: number;
 }
 
+interface CommentInput {
+  name: string;
+  message: string;
+  rating: number;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SuccessResponse | ErrorResponse | GetResponse>
@@ -38,7 +44,7 @@ export default async function handler(
     const collection = db.collection<Comment>("comments");
 
     if (req.method === "POST") {
-      const { name, message, rating }: Partial<Omit<Comment, '_id' | 'createdAt'>> = req.body;
+      const { name, message, rating }: CommentInput = req.body;
 
       if (!name || !message || !rating) {
         return res.status(400).json({ error: "Semua field harus diisi" });
@@ -55,7 +61,7 @@ export default async function handler(
         createdAt: new Date(),
       };
 
-      await collection.insertOne(newComment as Omit<Comment, '_id'>);
+      await collection.insertOne(newComment);
       return res.status(201).json({ message: "Komentar berhasil disimpan" });
     }
 
